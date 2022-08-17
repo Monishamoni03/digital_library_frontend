@@ -1,0 +1,22 @@
+.about {
+    margin: 3% 10%;
+}
+
+.aboutHead {
+    text-align: center;
+
+}
+
+.aboutImage {
+    text-align: center;
+}
+
+.about-image {
+    text-align: center;
+    padding-bottom: 50px;
+}
+
+.aboutPara {
+    font-size: 1.5em;
+    font-family: sans-serif;
+}

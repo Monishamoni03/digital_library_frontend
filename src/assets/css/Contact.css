@@ -1,0 +1,78 @@
+/* .containers {
+    /* margin-top: 50px; *
+    width: 100%;
+    height: 100vh;
+    /* background: peachpuff; *
+    display: flex;
+    align-items: center;
+    justify-content: center;
+} */
+
+.contact-section {
+    margin: 1em;
+}
+
+.cnt {
+    width: 90%; 
+    text-align: center;
+    margin: 7px 50px 7px 5%;
+}
+
+.heading {
+    font-family: "Algeria";
+    padding: 10px;/*To increase space around heading*/
+    font-size: 25px;
+    font-weight: bold;
+    color: burlywood;
+    text-align: center;
+    border-bottom: 1px solid rgb(180, 152, 156);
+    margin-bottom:70px;
+}
+
+.contact-image { 
+    height:400px;
+    width: 500px;
+    float: left;
+    /*--- padding-bottom: 60px; */
+    /* margin: auto; *  ---*/
+}
+.forms {
+    /* margin: 25px 85px 75px 100px; */
+    background: lightgrey;
+    display: flex;  
+    flex-direction: column;
+    margin: auto;  /*to place the container in center*/
+    /* justify-content: center; */
+    padding: 2vw 4vw;
+    width: 90%;
+    max-width: 600px;
+    border-radius: 10px;
+}
+
+.forms h3 {
+    color: black;
+    font-weight: 800;
+    margin-bottom: 20px;
+}
+
+.forms input, form textarea {
+    border: 0;
+    margin: 10px 0;
+    padding: 20px;
+    outline: none;
+    background: rgb(161, 163, 167);
+    font-size: 15px;
+}
+
+.forms button {
+    padding: 15px;
+    background: rgb(167, 159, 159);
+    color: rgb(20, 19, 19);
+    font-size: 15px;
+    border: 0;
+    outline: none;
+    cursor: pointer;
+    width: 150px;
+    margin: 20px auto 0;
+    border-radius: 30px;
+}
