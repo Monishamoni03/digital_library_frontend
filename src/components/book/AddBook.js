@@ -22,11 +22,10 @@ const Container = styled(FormGroup)`
 const AddBook = () => {
     const [book, setBook] = useState(initialValue);
     const { bookName, author, category } = book; 
-    // const [error, setError] = useState(""); 
+    const [error, setError] = useState(""); 
    
     let navigate = useNavigate();
     // let dispatch = useDispatch();
-
 
     const { errormessage } = useSelector(state => state.data);
     const { successmessage } = useSelector(state => state.data);
@@ -47,16 +46,10 @@ const AddBook = () => {
         })
     }
 
-    // const addBookDetails = (e) => {
-    //     e.preventDefault();
-    //     if (!bookName || !author || !category) {
-    //         setError("Please enter data in all input fields");
-    //     } else {
-    //         dispatch
-    //     }
-
-    // }
     const addBookDetails = async() => { 
+        if (!bookName || !author || !category) {
+            setError("Please enter all the data in the below input fields");
+        }
         await addBook(book);
         navigate('/admin/book');
     }
@@ -64,6 +57,7 @@ const AddBook = () => {
         <>
         <Container>
             <Typography variant="h3">Add Book</Typography>
+            {error && <h3 style={{color : "red"}}>{error}</h3>}
             <FormControl>
                 <InputLabel htmlFor="my-input">Book Name</InputLabel>
                 <Input onChange = {(e) => handleChange(e)} name = 'bookName' value = {bookName} id = 'my-input' />
@@ -75,18 +69,6 @@ const AddBook = () => {
             <FormControl>
             <InputLabel htmlFor="my-input">Category</InputLabel>
                 <Input onChange = {(e) => handleChange(e)} name = 'category' value = {category} id = 'my-input' />
-            {/* <div className="form-floating mb-3">
-                {/* <label htmlFor="floatingRole">Role Type</label /}
-                <select class="form-control" aria-label="Default select example" required={true} >
-                  <option value="" selected>Choose Category</option>
-                  <option value="admin">Disney</option>
-                  <option value="user">Comics</option>
-                  <option value="admin">Science</option>
-                  <option value="user">Biography</option>
-                  <option value="admin">Fantansy</option>
-                  <option value="user">Social Related</option>
-                </select>
-              </div> */}
             </FormControl>
             <FormControl>
                 <Button variant="contained" color="primary" onClick={() => addBookDetails()}>Add</Button>
@@ -105,9 +87,22 @@ const AddBook = () => {
           
     </div>
 
-        </>
+    </>
         
     )
 }
 
 export default AddBook;
+
+{/* <div className="form-floating mb-3">
+                {/* <label htmlFor="floatingRole">Role Type</label /}
+                <select class="form-control" aria-label="Default select example" required={true} >
+                  <option value="" selected>Choose Category</option>
+                  <option value="admin">Disney</option>
+                  <option value="user">Comics</option>
+                  <option value="admin">Science</option>
+                  <option value="user">Biography</option>
+                  <option value="admin">Fantansy</option>
+                  <option value="user">Social Related</option>
+                </select>
+              </div> */}

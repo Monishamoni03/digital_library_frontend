@@ -35,6 +35,8 @@ const getErrorMessage = (message) => ({
   payload: message
 });
 
+
+
 //Register User
 export const registerUser = (user) => {
   return function (dispatch) {
@@ -163,7 +165,7 @@ export const loadUsers = () => {
 const usersUrl = 'http://localhost:5000/books';
 export const getBooks = async (id) => {
   id = id || '';
-  return await axiosInstance.get(`${usersUrl}/all/${id}`);
+  return await axiosInstance.get(`${usersUrl}/${id}`);
 }
 
 //add book
@@ -172,8 +174,16 @@ export const addBook = async (book) => {
 }
 
 //edit books
+// export const editBook = async (id, book) => {
+//   return await axiosInstance.put(`${usersUrl}/${id}`, book)
+// }
+
 export const editBook = async (id, book) => {
-  return await axiosInstance.put(`${usersUrl}/${id}`, book)
+  try {
+    return await axiosInstance.put(`${usersUrl}/${id}`, book);
+  } catch (error) {
+    console.log('Error while editing books', error);
+  }
 }
 
 //delete books
@@ -181,16 +191,54 @@ export const deleteBook = async (id) => {
   return await axiosInstance.delete(`${usersUrl}/${id}`);
 }
 
-export const loadBookDetails = async(id) => {
-  const res = await getBooks(id);
-  setBook(res.data);
-}
+//single book
+export const getSingleBook = (id) => {
+  return function (dispatch) {
+      axiosInstance
+      .get(`${process.env.REACT_WEBPACK_APP_BASEURL}/${id}`)
+      .then((resp) => {
+          console.log("resp",resp);
+          dispatch(getUser(resp.data));
+      })
+      .catch(error => console.log(error))
+  };
+};
+
+// export const loadBookDetails = async(id) => {
+//   const res = await getBooks(id);
+//   setBook(res.data);
+// }
 
 //user- booking list
 export const getBookList = async (id) => {
   return await axios.get(`http://localhost:5000/bookings/${id}`);
 }
 
-export const addBookToList = async (book) => {
-  return await axios.post(`http://localhost:5000/books/add-list`,book)
+const addBookListSuccess = (message) => {
+  return {
+    type : 'ADD_BOOK_LIST_SUCCESS',
+    payload : message
+  }
+}
+
+const addBookListFailure = (message) => {
+  return {
+    type : 'ADD_BOOK_LIST_FAILURE',
+    payload : message
+  }
+}
+
+
+export const addBookToList = (book) => {
+  return async(dispatch) => {
+    await axios.post(`http://localhost:5000/books/add-list`,book)
+    .then((message) => {
+      console.log("success : ",message.data.message)
+      dispatch(addBookListSuccess(message.data.message))
+    })
+    .catch((err) => {
+      console.log("error : ",err.response.data.message)
+      dispatch(addBookListFailure(err.response.data.message))
+    })
+  }
 }

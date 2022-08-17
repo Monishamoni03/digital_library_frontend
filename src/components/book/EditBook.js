@@ -19,21 +19,15 @@ const Container = styled(FormGroup)`
 const EditBook = () => {
 
     const [book, setBook] = useState(initialValue);
+    const [error, setError] = useState(""); 
     const { bookName, author, category } = book;
     const { id } = useParams();
     
     let navigate = useNavigate();
 
-    useEffect(() => {
+    useEffect(() => {;
         loadBookDetails();
     }, []);
-
-    useEffect(() => {
-       if(book) {
-        setBook({...book});
-       }
-    }, [book]);
-
 
     const loadBookDetails = async() => {
         const res = await getBooks(id);
@@ -41,7 +35,10 @@ const EditBook = () => {
     }
 
     const editBookDetails = async() => {
-        let res = await editBook(id, book);
+        if (!bookName || !author || !category) {
+            setError("Please enter the changes to update");
+        }
+        await editBook(id, book);
         navigate('/admin/book');
     }
 
@@ -51,8 +48,9 @@ const EditBook = () => {
     }
 
     return (
-        <Container injectFirst>
+        <Container injectfirst>
             <Typography variant="h4">Edit Book Information</Typography>
+            {error && <h3 style={{color : "red", textAlign : "center"}}>{error}</h3>}
             <FormControl>
                 <InputLabel htmlFor="my-input">Book Name</InputLabel>
                 <Input onChange={(e) => onValueChange(e)} name='bookName' value={bookName} id="my-input" aria-describedby="my-helper-text" />
@@ -64,18 +62,6 @@ const EditBook = () => {
             <FormControl>
                 <InputLabel htmlFor="my-input">Category</InputLabel>
                 <Input onChange={(e) => onValueChange(e)} name='category' value={category} id="my-input" aria-describedby="my-helper-text" />
-                {/* <div className="form-floating mb-3"> */}
-                {/* <label htmlFor="floatingRole">Role Type</label */}
-                {/* <select class="form-control" aria-label="Default select example" required={true} onChange={(e) => onValueChange(e)} name='category' value={category} id="my-input" aria-describedby="my-helper-text">
-                  <option value="" selected>Choose Category</option>
-                  <option value="Disney">Disney</option>
-                  <option value="Comics">Comics</option>
-                  <option value="Science">Science</option>
-                  <option value="Biography">Biography</option>
-                  <option value="Fantasy">Fantasy</option>
-                  <option value="Social Related">Social Related</option>
-                </select> */}
-              {/* </div> */}
             </FormControl>
             <FormControl>
                 <Button variant="contained" color="primary" onClick={() => editBookDetails()}>Update Book</Button>

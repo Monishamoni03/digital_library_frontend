@@ -52,9 +52,9 @@ const UserNavBar = () => {
         <Link to = '/about'>
           <p className = {`${activeTab === 'About' ? 'active' : ''}`} onClick = {() => setActiveTab('About')}>About /</p>
         </Link>
-        <Link to = '/profile'>
+        {/* <Link to = '/profile'>
           <p className = {`${activeTab === 'User Profile' ? 'active' : ''}`} onClick = {() => setActiveTab('User Profile')}>Profile /</p>
-        </Link>
+        </Link> */}
         <Link to = '/book-list'>
           <p className = {`${activeTab === 'MyList' ? 'active' : ''}`} onClick = {togglePopup}>My List /</p>
           { isOpen && <Popup content = {<>Ohm Sai Ram</>} handleClose={togglePopup}/> }

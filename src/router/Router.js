@@ -16,7 +16,7 @@ import ValidateSession from "../shared/utils/validateSession";
 
 function Router() {
 
-    ValidateSession()
+    ValidateSession()   //route protection
 
         return ( 
             <div className = "App">

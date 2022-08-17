@@ -1,5 +1,3 @@
-import * as regex from '../constants/regex';
-
 function ValidateBook(bookName, author, category) {
     console.log("user-->"+bookName)
     console.log("Entered validation")

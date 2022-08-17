@@ -37,9 +37,9 @@ const AdminNavBar = () => {
       <p className='logo'>Library Management System</p>
 
       <div className='header-right'>
-        <Link to='/addbooks'>
+        {/* <Link to='/addbooks'>
           <p className={`${activeTab === 'ProfileInfo' ? 'active' : ''}`} onClick={() => setActiveTab('Admin')}>Profile</p>
-        </Link>
+        </Link> */}
         {/* <Link to = '/about'>
           <p className = {`${activeTab === 'About' ? 'active' : ''}`} onClick = {() => setActiveTab('About')}>About</p>
         </Link> */}

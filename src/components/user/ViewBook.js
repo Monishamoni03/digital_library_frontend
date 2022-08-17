@@ -6,7 +6,6 @@ import { addBookToList, getBooks } from '../../action/action';
 import { Link, useNavigate } from "react-router-dom";
 import UserNavBar from "./UserNavBar";
 import { useDispatch } from "react-redux";
-import '../../assets/css/About';
 import jwtdecode from 'jwt-decode'
 
 const StyledTable = styled(Table)`
@@ -31,7 +30,6 @@ const TRow = styled(TableRow)`
 const ViewBook = () => {
     const [books, setBooks] = useState([]);
     const navigate = useNavigate();
-    
     useEffect(() => {
         getAllBooks();
     }, []);
@@ -44,13 +42,12 @@ const ViewBook = () => {
         setBooks(res.data);
     }
 
-    const addBook = async (bookId) => {
+    const addBook = (bookId) => {
         const token = jwtdecode(window.localStorage.getItem('token')).id
-        let res = await addBookToList({
+        dispatch(addBookToList({
             user : token,
             book : bookId
-        })
-        alert(res.data.message)
+        }))
     }
 
 return (

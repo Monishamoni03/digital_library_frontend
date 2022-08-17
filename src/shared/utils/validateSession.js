@@ -2,13 +2,15 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 function ValidateSession() {
-    console.log("IN validate session");
-    const navigate = useNavigate()
+
+    console.log("In validating session");
+    const navigate = useNavigate();
 
     const ValidateSession =() => {
         let url = window.location.href;
 
-        if(url.indexOf('login') > -1 || url.indexOf('register') > -1 || url.indexOf('admin') > -1 || url === 'http://localhost:3000/') { //free routes
+        //free routes
+        if(url.indexOf('login') > -1 || url.indexOf('register') > -1 || url.indexOf('admin') > -1 || url === 'http://localhost:3000/') {   
             return true
         }
 
@@ -26,4 +28,4 @@ function ValidateSession() {
     })
 }
 
-export default ValidateSession
+export default ValidateSession;
