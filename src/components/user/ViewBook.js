@@ -2,11 +2,11 @@
 
 import React, { useState, useEffect } from "react";
 import { Table, TableBody, TableCell, Button, Paper, TableHead, TableRow, styled } from "@mui/material";
-import { addBookToList, getBooks } from '../../action/action';
+import { addBookToList, getBooks, setBookIn } from '../../action/action';
 import { Link, useNavigate } from "react-router-dom";
 import UserNavBar from "./UserNavBar";
-import { useDispatch } from "react-redux";
-import jwtdecode from 'jwt-decode'
+import { useDispatch, useSelector } from "react-redux";
+import jwtdecode from 'jwt-decode';
 
 const StyledTable = styled(Table)`
     width: 90%;
@@ -30,12 +30,24 @@ const TRow = styled(TableRow)`
 const ViewBook = () => {
     const [books, setBooks] = useState([]);
     const navigate = useNavigate();
+
+    const { bookListSuccess } = useSelector(state => state.bookData);
+    const { bookListFailure } = useSelector(state => state.bookData);
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+      if (bookListSuccess) {
+        console.log('added book');
+        alert(bookListSuccess)
+        // dispatch(setBookIn())
+    } else if (bookListFailure) {
+      alert(bookListFailure)
+    }
+  }, [bookListSuccess, bookListFailure])
+
     useEffect(() => {
         getAllBooks();
     }, []);
-
-
-    const dispatch = useDispatch()
 
     const getAllBooks = async () => {
         let res = await getBooks();
@@ -47,7 +59,8 @@ const ViewBook = () => {
         dispatch(addBookToList({
             user : token,
             book : bookId
-        }))
+        }));
+        // alert('Book is added to your list');
     }
 
 return (
@@ -64,7 +77,7 @@ return (
                 <TableCell>Book Name</TableCell>
                 <TableCell>Author</TableCell>
                 <TableCell>Category</TableCell>
-                <TableCell>Booking List</TableCell>
+                <TableCell>Actions</TableCell>
             </THead>
         </TableHead>
         <TableBody>
@@ -75,9 +88,8 @@ return (
                         <TableCell>{book.author}</TableCell>
                         <TableCell>{book.category}</TableCell>
                         <TableCell>
-                            <Button color="primary" variant="contained" style={{marginRight:10}} component={Link} to={`/view/${book._id}`}>View</Button>
+                            <Button color="primary" variant="contained" style={{marginRight:15}} component={Link} to={`/view/${book._id}`}>View</Button>
                             <Button color="secondary" variant="contained" onClick={() => addBook(book._id)}>Add to List</Button>  
-                            {/* <Button color="secondary" variant="contained" onClick={() => navigate(`/book-list/${book._id}`)}>Add Book</Button>  */}
                         </TableCell>
                     </TRow>
                 ))}

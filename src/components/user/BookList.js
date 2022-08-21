@@ -1,20 +1,22 @@
-//USER--->MY BOOK LIST
+//USER---> MY BOOK LIST
 
 import React, { useState, useEffect } from "react";
 import { Table, TableBody, TableCell, Paper, TableHead, TableRow, Button, styled } from "@mui/material";
-import { getBookList } from '../../action/action';
-import { Link } from "react-router-dom";
+import { getBookList, removeBook } from '../../action/action';
+import jwtdecode from 'jwt-decode';
+import UserNavBar from "./UserNavBar";
+import { useNavigate } from "react-router-dom";
 
 const StyledTable = styled(Table)`
-    width: 90%;
-    margin: 90px 0 0 90px;
+    width: 50%;
+    margin: 100px 0 0 400px;
 `;
 
-const THead = styled(TableRow)`
+const THead = styled(TableRow)` 
     & > th {
         font-size: 20px;
-        background: #000000;
-        color: #FFFFFF;
+        background: black;
+        color: pink;
     }
 `;
 
@@ -26,39 +28,63 @@ const TRow = styled(TableRow)`
 
 const BookList = () => {
     const [books, setBooks] = useState([]);
-    
+    const navigate = useNavigate();
+
     useEffect(() => {
         getAllBookList();
+        console.log("books", books)
     }, []);
 
     const getAllBookList = async () => {
-        let res = await getBookList(userId);
+        const token = jwtdecode(window.localStorage.getItem('token')).id
+        let res = await getBookList(token);
         setBooks(res.data);
     }
 
-return (
-    <StyledTable>
-        <TableHead>
-            <THead>
-                <TableCell>Id</TableCell>
-                <TableCell>Book Name</TableCell>
-                <TableCell>Author</TableCell>
-                <TableCell>Category</TableCell>
-                <TableCell>Actions</TableCell>
-            </THead>
-        </TableHead> 
-        <TableBody>
-        {books.map((book) => (
-                    <TRow key={book.id}>
-                        <TableCell>{book._id}</TableCell> 
-                        <TableCell>{book.bookName}</TableCell>
-                        <TableCell>{book.author}</TableCell>
-                        <TableCell>{book.category}</TableCell>
-                    </TRow>
-                ))}
-        </TableBody>
-    </StyledTable>
-   )
+    const removeBooks = async (id) => {
+        await removeBook(id);
+        getAllBookList();
+        alert("Removed from your book list");
+    }
+
+    return (
+        <>
+            <UserNavBar />
+            <StyledTable>
+                <TableHead>
+                    <THead>
+                        <TableCell>Book Name</TableCell>
+                        <TableCell>Actions</TableCell>
+                    </THead>
+                </TableHead>
+
+                <TableBody>
+                    {books && books.map((book) => (
+                        <TRow key={book.id}>
+                            {/* <TableCell>{book._id}</TableCell>  */}
+                            <TableCell>{book.book.bookName || ""}</TableCell>
+
+                            <TableCell>
+                                <Button color="secondary" variant="contained" style={{ marginRight: 25 }} onClick={() => removeBooks(book._id)}>Remove</Button>
+                            </TableCell>
+                        </TRow>
+                    ))}
+                    {/* {books && console.log("books"+books)} */}
+                </TableBody>
+            </StyledTable>
+            <div className = 'book-container'>
+
+                <button onClick = {() => navigate('/user')}
+                    style={{ margin: "100px", height: "20%", width: "10%", color: "black", backgroundColor: "skyblue" }}
+                    type='button'
+                    className='btn btn-primary'
+                    data-toggle='modal'
+                    data-target='#exampleModal' >
+                    Go Back
+                </button>
+            </div>
+        </>
+    )
 }
 
 export default BookList;

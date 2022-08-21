@@ -1,24 +1,35 @@
-function ValidateBook(bookName, author, category) {
-    console.log("user-->"+bookName)
-    console.log("Entered validation")
+import * as regex from '../constants/regex';
+
+function ValidateBook(bookName, author, category, description) {
+    console.log("Entered book validation")
 
     const error = {
         bookNameError: '',
         authorError: '',
         categoryError: '',
+        descriptionError: ''
     }
 
     if (bookName === "") {
-        // console.log("user email err")
         error.bookNameError = "Please enter the book name";
+    } else if (!regex.NAME_REGEX.test(bookName)) {
+        error.bookNameError = "Invalid book name";
     }
 
     if (author === "") {
         error.authorError = "Please enter the book author";
+    } else if (!regex.NAME_REGEX.test(author)) {
+        error.authorError = "Invalid author name, don't include special characters, numbers";
     }
 
     if (category === "") {
         error.categoryError = "Please enter the category of book";
+    } else if (!regex.NAME_REGEX.test(category)) {
+        error.categoryError = "Invalid category name, don't include special characters, numbers";
+    }
+
+    if (description === "") {
+        error.descriptionError = "Please enter the category of book";
     }
 
     console.log("ERROR in validation : ", error)

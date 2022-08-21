@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
-import Header from "../shared/Header";
+import '../../assets/css/Header';
 import Footer from "../shared/Footer";
-// import About from './About';
 import Nav from '../shared/Nav';
 
 class Home extends Component {
     render() {
         return (
             <>
-            <Nav />
-             <Header />
-             {/* <About /> */}
+             <Nav />
+             <div className = 'home-container'>
+                <h1>Digital Library</h1>
+             </div>
              <Footer />
             </>
         );

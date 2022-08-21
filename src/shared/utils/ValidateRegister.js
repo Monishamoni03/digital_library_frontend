@@ -1,7 +1,7 @@
 import * as regex from '../constants/regex';
 
 function ValidateRegister(firstName, lastName, email, password, confirmPassword) {
-    console.log("Entered validation")
+    console.log("Entered register validation")
  
     const error = {
         firstNameError:'',

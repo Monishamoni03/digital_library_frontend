@@ -6,8 +6,6 @@ import '../../assets/css/NavBar';
 
 const AdminNavBar = () => {
   const [activeTab, setActiveTab] = useState("");
-  const user = useSelector(state => state.data._id);
-  // const admin = useSelector(state => state.admin._idAdmin);
   const disptach = useDispatch();
 
   const logoutFunction = () => {
@@ -17,9 +15,7 @@ const AdminNavBar = () => {
   const location = useLocation();
 
   useEffect(() => {
-    if (location.pathname === '/adm') {
-      setActiveTab('ProfileInfo');
-    } else if (location.pathname === '/') {
+    if (location.pathname === '/') {
       setActiveTab('Logout');
     }
   }, [location]);
@@ -27,6 +23,7 @@ const AdminNavBar = () => {
   const handleLogout = () => {
 
     console.log("IN LOGOUT");
+    alert('Successfully logged out');
     localStorage.removeItem('role')
     localStorage.removeItem('token')
   }
@@ -40,9 +37,7 @@ const AdminNavBar = () => {
         {/* <Link to='/addbooks'>
           <p className={`${activeTab === 'ProfileInfo' ? 'active' : ''}`} onClick={() => setActiveTab('Admin')}>Profile</p>
         </Link> */}
-        {/* <Link to = '/about'>
-          <p className = {`${activeTab === 'About' ? 'active' : ''}`} onClick = {() => setActiveTab('About')}>About</p>
-        </Link> */}
+
         <Link to='/'>
           <p className={`${activeTab === 'Logout' ? 'active' : ''}`} onClick={handleLogout}>Logout</p>
         </Link>

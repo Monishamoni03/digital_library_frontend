@@ -1,21 +1,28 @@
+import * as types from "../action/actionType";
+
 const initialState = {
-    bookListSuccess: false,
-    bookMessage: ''
+    loading: true,
+    bookListSuccess: '',
+    bookListFailure: '',
 };
 
 const bookReducers = (state = initialState, action) => {
     switch (action.type) {
 
-        case 'ADD_BOOK_LIST_SUCCESS': return {
-            ...state,
-            bookListSuccess: true,
-            bookMessage: action.payload
-        }
-        case 'ADD_BOOK_LIST_FAILURE': return {
-            ...state,
-            bookListSuccess: false,
-            bookMessage: action.payload
-        }
+        case types.ADD_BOOK_LIST_SUCCESS:
+            return {
+                ...state,
+                bookListSuccess: action.payload,
+                bookListFailure: '',
+                loading: true
+            };
+        case types.ADD_BOOK_LIST_FAILURE:
+            return {
+                ...state,
+                bookListFailure: action.payload,
+                bookListSuccess: '',
+                loading: false
+            };
         default:
             return state;
     }

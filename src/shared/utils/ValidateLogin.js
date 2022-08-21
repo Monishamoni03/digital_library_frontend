@@ -1,7 +1,6 @@
 import * as regex from '../constants/regex';
 
 function ValidateLogin(email, password) {
-    console.log("user-->"+email)
     console.log("Entered validation")
 
     const error = {
@@ -9,20 +8,17 @@ function ValidateLogin(email, password) {
         passwordError:''
     }
 
-    if (email === "") {
-        // console.log("user email err")
+    if (email === "") { 
         error.emailError = "Please enter your email";
-    }
-    else if (!regex.EMAIL_REGEX.test(email)) {
+    } else if (!regex.EMAIL_REGEX.test(email)) {
         error.emailError = "Invalid email address";
     }
 
     if (password === "") {
         error.passwordError = "Please enter your password";
-    }
-    else if (!regex.PASSWORD_REGEX.test(password)) {
-        error.passwordError = "Please check your password-minimum 6 characters required";
-    }
+    } else if (!regex.PASSWORD_REGEX.test(password)) {
+        error.passwordError = "Should contain a minimum of 6 characters with special character and numbers";
+    } 
 
     console.log("ERROR in validation : ", error)
 

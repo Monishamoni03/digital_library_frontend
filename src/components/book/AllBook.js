@@ -1,4 +1,4 @@
-//ADMIN ---> Available books
+//ADMIN ---> Available books with edit, delete
 
 import React, { useState, useEffect } from "react";
 import { Table, TableBody, TableCell, Paper, TableHead, TableRow, Button, styled } from "@mui/material";
@@ -27,14 +27,15 @@ const TRow = styled(TableRow)`
 
 const AllBook = () => {
     const [books, setBooks] = useState([]);
-    
+
     useEffect(() => {
         getAllBooks();
     }, []);
 
     const deleteBookData = async (id) => {
         await deleteBook(id);
-        getAllBooks();
+        getAllBooks();   // if user added to my list, admin should not delete that user added book
+        alert("Successfully book deleted fromo the table");
     }
 
     const getAllBooks = async () => {
@@ -43,51 +44,52 @@ const AllBook = () => {
     }
 
     const navigate = useNavigate();
-return (
-    <>
-    <AdminNavBar />
-    <div className = "admin-page">
-        <h1 style = {{textAlign: "center"}}>Available Books</h1>
-    </div>
-    <StyledTable>
-        <TableHead>
-            <THead>
-                <TableCell>Id</TableCell>
-                <TableCell>Book Name</TableCell>
-                <TableCell>Author</TableCell>
-                <TableCell>Category</TableCell>
-                <TableCell>Actions</TableCell>
-            </THead>
-        </TableHead> 
-        <TableBody>
-        {books.map((book) => (
-                    <TRow key={book.id}>
-                        <TableCell>{book._id}</TableCell> 
-                        <TableCell>{book.bookName}</TableCell>
-                        <TableCell>{book.author}</TableCell>
-                        <TableCell>{book.category}</TableCell>
-                        <TableCell>
-                            <Button color="primary" variant="contained" style={{marginRight:10}} component={Link} to={`/edit/${book._id}`}>Edit</Button> 
-                            <Button color="secondary" variant="contained" onClick={() => deleteBookData(book._id)}>Delete</Button> 
-                        </TableCell>
-                    </TRow>
-                ))}
-        </TableBody>
-    </StyledTable>
-    <div className = 'book-container'>
-          
-          <button onClick = {() => navigate('/admin')}
-            style = {{margin: "50px"}}
-            type='button'
-            className='btn btn-primary'
-            data-toggle='modal'
-            data-target='#exampleModal' >
-            Go Back
-          </button>
+    return (
+        <>
+            <AdminNavBar />
+            <div className="admin-page">
+                <h1 style={{ textAlign: "center" }}>Available Books</h1>
+            </div>
+            <StyledTable>
+                <TableHead>
+                    <THead>
+                        {/* <TableCell>Id</TableCell> */}
+                        <TableCell>Book Name</TableCell>
+                        <TableCell>Author</TableCell>
+                        <TableCell>Category</TableCell>
+                        <TableCell>Actions</TableCell>
+                    </THead>
+                </TableHead>
+                <TableBody>
+                    {books.map((book) => (
+                        <TRow key={book.id}>
+                            {/* <TableCell>{book._id}</TableCell>  */}
+                            <TableCell>{book.bookName}</TableCell>
+                            <TableCell>{book.author}</TableCell>
+                            <TableCell>{book.category}</TableCell>
+                            <TableCell>
+                                <Button color="primary" variant="contained" style={{ marginRight: 20 }} component={Link} to={`/edit/${book._id}`}>Edit</Button>
+                                <Button color="secondary" variant="contained" style={{ marginRight: 25 }} onClick={() => deleteBookData(book._id)}>Delete</Button>
+                                <Button color="primary" variant="contained" style={{ marginRight: 5 }} component={Link} to={`/description/${book._id}`}>View</Button>
+                            </TableCell>
+                        </TRow>
+                    ))}
+                </TableBody>
+            </StyledTable>
+            <div className='book-container'>
 
-    </div>
-    </>
-   )
+                <button onClick={() => navigate('/admin')}
+                    style={{ margin: "100px", height: "20%", width: "10%", color: "black", backgroundColor: "skyblue" }}
+                    type='button'
+                    className='btn btn-primary'
+                    data-toggle='modal'
+                    data-target='#exampleModal' >
+                    Go Back
+                </button>
+
+            </div>
+        </>
+    )
 }
 
 export default AllBook;

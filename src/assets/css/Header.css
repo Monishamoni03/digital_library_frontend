@@ -1,53 +1,90 @@
 .home-container {
-    /* background :url('libraryImage.jpg') center center/cover no-repeat; */
-    background: url('https://images.pexels.com/photos/2041540/pexels-photo-2041540.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2') center center/cover no-repeat ;
-    height: 100vh;
-    width: 100%;
-    display: flex; 
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.2);
-    object-fit: contain;
-  }
-  
-  .home-container > h1 {
-    color: #fff;
-    font-size: 50px;
-    margin-top: -800px;
-  }
-  .admin-container {
-    background: url('https://media.istockphoto.com/photos/textbooks-stacked-on-school-desk-with-chalkboard-background-picture-id638383032?b=1&k=20&m=638383032&s=170667a&w=0&h=T8UqCXjblfdTPKu4LlLHqJWizWbd3LEhEkJHAMcB83I=') center center/cover no-repeat;
-    height: 904px;
-    width: 100%;
-    display: flex; 
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    /* box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.2); */
-    object-fit: contain;
-  }
-  .admin-container > h1 {
-    color: #fff;
-    font-size: 50px;
-    margin-top: -600px;
-  }
-  /* .adminBG-image {
+  /* background :url('libraryImage.jpg') center center/cover no-repeat; */
+  background: url('https://images.pexels.com/photos/2041540/pexels-photo-2041540.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2') center center/cover no-repeat;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.2);
+  object-fit: contain;
+
+
+}
+
+.home-container>h1 {
+  color: #fff;
+  font-size: 90px;
+  margin-top: -200px;
+  border-radius: 20px;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 50px;
+
+}
+
+.admin-container {
+  background: url('https://media.istockphoto.com/photos/textbooks-stacked-on-school-desk-with-chalkboard-background-picture-id638383032?b=1&k=20&m=638383032&s=170667a&w=0&h=T8UqCXjblfdTPKu4LlLHqJWizWbd3LEhEkJHAMcB83I=') center center/cover no-repeat;
+  height: 904px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  object-fit: contain;
+  border : 20px solid black;
+}
+
+.admin-container>h1 {
+  color: #fff;
+  font-size: 90px;
+  /* margin-top: 100px; */
+  border-bottom: 5px solid black;
+}
+
+.buttons {
+  margin-top: 100px;
+  display: flex;
+  padding:50px;
+  column-gap: 50px;
+}
+
+.admin-button{
+  border: 1px solid white;
+  background-color: #2a0845;
+  color: #f0f0f0;
+  /*text color*/
+  font-weight: bold;
+  font-size: 25px;
+  padding: 50px;
+  border-radius: 10px;
+  margin-top: 10px;
+}
+
+.admin-button:hover {
+  background-color: darkmagenta;
+}
+
+.admin-button:active{
+  background-color: blueviolet;
+}
+
+/* .adminBG-image {
     height:897px;
     width: 1833px;
     padding-bottom: 60px;
     margin: auto;
 } */
-  @media screen and (max-width: 960px) {
-      .header-container > h1 {
-        font-size: 70px;
-        margin-top: -150px;
-      }
+@media screen and (max-width: 960px) {
+  .header-container>h1 {
+    font-size: 70px;
+    margin-top: -150px;
   }
-    
-  @media screen and (max-width: 768px) {
-      .header-container > h1 {
-        font-size: 50px;
-        margin-top: -100px;
-      }
+}
+
+@media screen and (max-width: 768px) {
+  .header-container>h1 {
+    font-size: 50px;
+    margin-top: -100px;
   }
+}

@@ -1,6 +1,6 @@
 .header {
     overflow: hidden;
-    background-color: black;
+    background: rgba(0, 0, 0, 0.9);
 }
 
 .header p {
@@ -8,16 +8,19 @@
     color: white;
     text-align: center;
     padding: 5px;
-    text-decoration: none;
+    text-decoration: none; 
     font-size: 28px;
     line-height: 50px;
     border-radius: 15px;
+    
 }
 
 .header p.logo {
     font-size: 28px;
     font-weight: bold;
     color: lightcyan;
+    padding:20px;
+    
 }
 
 .header p :hover {
@@ -32,6 +35,7 @@
 
 .header-right {
     float: right;
+    padding:15px;
 }
 
 @media screen and (max-width: 100px) {

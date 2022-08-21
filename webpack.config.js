@@ -52,10 +52,10 @@ module.exports = {
                         loader: 'file-loader',
                     }
             },
-            // for reload
+            // for page reload
             {
                 test: /webpack-dev-server\\client/,
-                 loader: "null-loader"                
+                loader: "null-loader"                
             },
         ]
     }

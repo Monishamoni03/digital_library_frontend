@@ -20,11 +20,13 @@ const userReducers = (state = initialState, action) => {
             return {
                 ...state,
                 successmessage: action.payload,
+                errormessage: '',
                 loading: true
             };
-        case types.GET_ERROR_MESSAGE:
+        case types.GET_ERROR_MESSAGE: 
             return {
                 ...state,
+                successmessage : '',
                 errormessage: action.payload,
                 loading: false
             };
@@ -38,7 +40,5 @@ const userReducers = (state = initialState, action) => {
             return state;
     }
 };
-
-
 
 export default userReducers;

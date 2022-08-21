@@ -10,7 +10,7 @@ function ValidateSession() {
         let url = window.location.href;
 
         //free routes
-        if(url.indexOf('login') > -1 || url.indexOf('register') > -1 || url.indexOf('admin') > -1 || url === 'http://localhost:3000/') {   
+        if (url.indexOf('login') > -1 || url.indexOf('register') > -1 || url.indexOf('admin') > -1 || url === 'http://localhost:3000/') {   
             return true
         }
 

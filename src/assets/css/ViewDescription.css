@@ -1,0 +1,74 @@
+.card-description {
+    /* margin-top: 150px; */
+    width: 450px;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    border: 1px blue solid;
+    align-content: center;
+    background-color: whitesmoke;
+    /* margin: 0 auto; */
+    /* background: url('https://media.istockphoto.com/photos/elearning-class-and-ebook-digital-technology-in-education-concept-pc-picture-id1004209050?k=20&m=1004209050&s=612x612&w=0&h=Pv95CEiD1UoeVbg-cMSxvcshbiGcudSalXCjMa6UL3I= center center/cover no-repeat'); */
+}
+
+.descriptionBook-container {
+    background: url('https://media.istockphoto.com/photos/elearning-class-and-ebook-digital-technology-in-education-concept-pc-picture-id1004209050?k=20&m=1004209050&s=612x612&w=0&h=Pv95CEiD1UoeVbg-cMSxvcshbiGcudSalXCjMa6UL3I=') center center/cover no-repeat;
+    height: 980px;
+    width: 100%;
+    display: flex;  
+    /* flex-direction: column;   style={{marginTop: "150px"}}*/
+    justify-content: center;
+    align-items: center;
+    object-fit: contain;
+    /* display: flex;  */
+    /* flex-direction: column; */
+    /* justify-content: center;
+    align-items: center; */
+    object-fit: contain;
+}
+
+.new-container {
+    /* border: 10px solid black; */
+    padding: 10px;
+    display: flex;
+    background: url('https://media.istockphoto.com/photos/elearning-class-and-ebook-digital-technology-in-education-concept-pc-picture-id1004209050?k=20&m=1004209050&s=612x612&w=0&h=Pv95CEiD1UoeVbg-cMSxvcshbiGcudSalXCjMa6UL3I=') center center/cover no-repeat;
+    height: 980px;
+    width: 100%;
+
+}
+
+
+/* Description */
+.card-header {  
+    height: 50px;
+    background: skyblue;
+    color: white;
+    text-align: center;
+}
+
+/* Description heading*/
+.card-header p {
+    font-size: 20px;
+}
+
+/* Book name, author,.. */
+.description-container {
+    padding: 14px 16px 14px 16px;
+    margin: 10px;
+}
+
+.des-container {
+    /* background: url('https://media.istockphoto.com/photos/elearning-class-and-ebook-digital-technology-in-education-concept-pc-picture-id1004209050?k=20&m=1004209050&s=612x612&w=0&h=Pv95CEiD1UoeVbg-cMSxvcshbiGcudSalXCjMa6UL3I= center center/cover no-repeat'); */
+    background-image: url('../images/description.jpg');
+    height: 100%;
+    width: 100%;
+    display: flex; 
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    object-fit: contain;
+}
+
+/* .description-image {
+   height: 100%;
+} */

@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import ValidateLogin from "../../shared/utils/ValidateLogin";
 import { userLoggedIn, setLoggedIn } from '../../action/action';
 import login from "../../assets/images/login.jpg";
+import '../../assets/css/Login.css';
 import Nav from '../shared/Nav';
 
 function Login() {
@@ -18,8 +19,7 @@ function Login() {
 
   const validateLogin = () => {
 
-    const error = ValidateLogin(email, password)
-    console.log("ERROR  in login: " + error.emailError);
+    const error = ValidateLogin(email, password);
 
     if (error.emailError) {
       setEmailError(error.emailError)
@@ -28,16 +28,17 @@ function Login() {
     if (error.passwordError) {
       setPasswordError(error.passwordError)
     }
- 
+
     if (error.emailError || error.passwordError) {
       return false;
     }
 
-    return true
+    return true;
   }
-  const navigate = useNavigate();
 
-  let dispatch = useDispatch();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const { errormessage } = useSelector(state => state.data);
   const { successmessage } = useSelector(state => state.data);
   const { roleLogin } = useSelector((state) => state.data);
@@ -72,26 +73,19 @@ function Login() {
 
   const handleSubmit = e => {
     e.preventDefault();
-
-    console.log("USER : ", user)
-
     const checkValid = validateLogin(user);
-    console.log("CHECK VALID : ", checkValid);
     if (checkValid) {
       dispatch(userLoggedIn({ email: email, password: password }));
-      // alert("Logged in successfully");
     } else {
-    //if (errormessage) {
-      alert(errormessage)
-    // }
+      alert(errormessage);
     }
   }
 
   return (
     <>
       <Nav />
-      <img src={login} alt="login" className="login-image" style={{ position: 'absolute', top: 250, left: 0, right: 0, bottom: 0, justifyContent: 'left', alignItems: 'left' }}></img>
-      <div className="container" style={{ position: 'absolute', top: 200, left: 200, right: -500, bottom: 0, justifyContent: 'right', alignItems: 'right' }}>
+      <img src={login} alt="login" className="login-image"></img>
+      <div className="container-login">
         <div className="row">
           <div className="col-sm-9 col-md-7 col-lg-5 mx-auto">
             <div className="card border-0 shadow rounded-3 my-5">
@@ -102,13 +96,13 @@ function Login() {
                     <input autoComplete="" value={email}
                       onChange={e => setEmail(e.target.value)} type="email" className="form-control" id="floatingInput" placeholder="name@example.com" />
                     <label htmlFor="floatingInput">Email address<sup> *</sup></label>
-                    <p style = {{ color: 'red' }}>{emailError}</p>
+                    <p style={{ color: 'red' }}>{emailError}</p>
                   </div>
                   <div className="form-floating mb-3">
                     <input autoComplete="" value={password}
                       onChange={e => setPassword(e.target.value)} type="password" className="form-control" id="floatingPassword" placeholder="Password" />
                     <label htmlFor="floatingPassword">Password<sup> *</sup></label>
-                    <p style = {{ color: 'red' }}>{passwordError}</p>
+                    <p style={{ color: 'red' }}>{passwordError}</p>
                   </div>
                   <div className="d-grid">
                     <button className="btn btn-primary btn-login text-uppercase fw-bold" type="submit">Login</button>
