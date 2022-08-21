@@ -19,24 +19,23 @@ function ViewDescription() {
     const { id } = useParams();
 
     let navigate = useNavigate();
-    useEffect(() => {;
+    useEffect(() => {
+        ;
         loadBookDetails();
     }, []);
 
-    const loadBookDetails = async() => {
+    const loadBookDetails = async () => {
         const res = await getBooks(id);
         setBook(res.data);
     }
 
     return (
-        <div style={{marginTop: "150px"}} className = 'user-container'>
-            <div className='card-description'>
+        <div className='descriptionBook-container'>
+            <div className='card-description' style={{ marginTop: "145px" }}>
                 <div className='card-header'>
-                    <p>Description</p>
+                    <span>{bookName}</span>
                 </div>
-                <div className='description-conatiner'>
-                    <strong>Book Name - </strong>
-                    <span>{ bookName}</span>
+                <div className='description-container'>
                     <br /> <br />
                     <strong>Author - </strong>
                     <span>{author}</span>
@@ -48,17 +47,17 @@ function ViewDescription() {
                     <span>{description}</span>
                     <br /> <br />
                 </div>
+                <div className='book-container'>
+                    <button onClick={() => navigate('/user')}
+                        style={{ margin: "50px", height: "50%", width: "30%", color: "black", backgroundColor: "white" }}
+                        type='button'
+                        className='btn btn-primary'
+                        data-toggle='modal'
+                        data-target='#exampleModal' >
+                        Go Back
+                    </button>
+                </div>
             </div>
-        <div className = 'book-container'>
-          <button onClick = {() => navigate('/user')}
-            style = {{margin: "100px", height: "20%", width: "10%", color: "black", backgroundColor: "skyblue"}}
-            type='button'
-            className='btn btn-primary'
-            data-toggle='modal'
-            data-target='#exampleModal' >
-            Go Back
-          </button>
-        </div>
         </div>
     )
 }

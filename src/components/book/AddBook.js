@@ -21,7 +21,7 @@ const Container = styled(FormGroup)`
     & > div {
         margin-top: 20px;
 `;
-
+ 
 const AddBook = () => {
     const [book, setBook] = useState(initialValue);
     const { bookName, author, category, description } = book;
@@ -96,42 +96,43 @@ const AddBook = () => {
         <>
             <div className="new-container">
             <Container>
-                <Typography variant="h2" style={{ textAlign: 'center' }}>Add Book</Typography>
+                <Typography variant="h2" style={{ textAlign: 'center', color:'#0b2c6e', fontWeight:'bold', borderBottom:'5px solid black'}}>Add Book</Typography>
                 {error && <h3 style={{ color: "red", textAlign: "center" }}>{error}</h3>}
                 <FormControl>
-                    <InputLabel htmlFor="my-input" style={{color: "lightpink", fontSize: "25px", fontWeight: "bold"}}>Book Name</InputLabel>
-                    <Input onChange={(e) => handleChange(e)} name='bookName' value={bookName} style={{color: "white", fontSize: "20px", fontWeight: "bold"}} id='my-input' />
-                    <p style={{ color: 'red' }}>{bookNameError}</p>
+                    <InputLabel htmlFor="my-input" style={{color: "#0b2c6e", fontSize: "28px", fontWeight: "bold"}}>Book Name</InputLabel>
+                    <Input onChange={(e) => handleChange(e)} name='bookName' value={bookName} style={{color: "black", fontSize: "18px"}} id='my-input' />
+                    <p style={{ color: 'red', fontSize: "18px" }}>{bookNameError}</p>
                 </FormControl>
                 <FormControl>
-                    <InputLabel htmlFor="my-input">Author</InputLabel>
-                    <Input onChange={(e) => handleChange(e)} name='author' value={author} id='my-input' />
-                    <p style={{ color: 'red' }}>{authorError}</p>
+                    <InputLabel htmlFor="my-input" style={{color: "#0b2c6e", fontSize: "28px", fontWeight: "bold"}}>Author</InputLabel>
+                    <Input onChange={(e) => handleChange(e)} name='author' value={author} style={{color: "black", fontSize: "18px"}} id='my-input' />
+                    <p style={{ color: 'red', fontSize: "18px" }}>{authorError}</p>
                 </FormControl>
                 <FormControl>
-                    <InputLabel htmlFor="my-input">Category</InputLabel>
-                    <Input onChange={(e) => handleChange(e)} name='category' value={category} id='my-input' />
-                    <p style={{ color: 'red' }}>{categoryError}</p>
+                    <InputLabel htmlFor="my-input" style={{color: "#0b2c6e", fontSize: "28px", fontWeight: "bold"}}>Category</InputLabel>
+                    <Input onChange={(e) => handleChange(e)} name='category' value={category} style={{color: "black", fontSize: "18px"}} id='my-input' />
+                    <p style={{ color: 'red', fontSize: "18px" }}>{categoryError}</p>
                 </FormControl>
                 <FormControl>
-                    <InputLabel htmlFor="my-input">Description</InputLabel>
-                    <Input onChange={(e) => handleChange(e)} name='description' value={description} id='my-input' />
-                    <p style={{ color: 'red' }}>{descriptionError}</p>
+                    <InputLabel htmlFor="my-input" style={{color: "#0b2c6e", fontSize: "28px", fontWeight: "bold"}}>Description</InputLabel>
+                    <Input onChange={(e) => handleChange(e)} name='description' value={description} style={{color: "black", fontSize: "18px"}} id='my-input' />
+                    <p style={{ color: 'red', fontSize: "18px" }}>{descriptionError}</p>
                 </FormControl>
                 <FormControl>
-                    <Button variant="contained" color="primary" onClick={() => addBookDetails()}>Add</Button>
+                    <Button variant="contained" color="primary"  onClick={() => addBookDetails()}  >Add</Button>
                 </FormControl>
-            </Container>
-            <div className='book-container'>
+                <div className='book-container'>
                 <button onClick={() => navigate('/admin')}
-                    style={{ margin: "80px", height: "30%", width: "17%", color: "black", backgroundColor: "skyblue" }}
+                    // style={{ margin: "80px", height: "30%", width: "17%", color: "black", backgroundColor: "skyblue" }}
                     type='button'
-                    className='btn btn-primary'
+                    className="admin-button"
                     data-toggle='modal'
-                    data-target='#exampleModal' >
+                    data-target='#exampleModal' 
+                    id = 'add-book'>
                     Go Back
                 </button>
-            </div>
+                </div>
+            </Container>
             </div>
         </>
 

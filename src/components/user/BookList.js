@@ -50,8 +50,13 @@ const BookList = () => {
     return (
         <>
             <UserNavBar />
+            <div style={{ background: `url('https://i.pinimg.com/originals/73/66/0d/73660d35a956a520d400d2ca465eb02c.jpg') center center/cover no-repeat`, height: "780px"}}>
             <StyledTable>
                 <TableHead>
+                {/* <div className = "about"> */}
+                <TableCell className = "aboutHead" style={{color: "violet", fontSize: "50px", textAlign: "center"}}>My List</TableCell>
+                {/* </div> */}
+                <br /><br />
                     <THead>
                         <TableCell>Book Name</TableCell>
                         <TableCell>Actions</TableCell>
@@ -71,11 +76,9 @@ const BookList = () => {
                     ))}
                     {/* {books && console.log("books"+books)} */}
                 </TableBody>
-            </StyledTable>
-            <div className = 'book-container'>
-
-                <button onClick = {() => navigate('/user')}
-                    style={{ margin: "100px", height: "20%", width: "10%", color: "black", backgroundColor: "skyblue" }}
+                <div className='book-container'>
+                <button onClick={() => navigate('/user')}
+                    style={{ margin: "50px", height: "80%", width: "100%", color: "white", backgroundColor: "violet" }}
                     type='button'
                     className='btn btn-primary'
                     data-toggle='modal'
@@ -83,83 +86,10 @@ const BookList = () => {
                     Go Back
                 </button>
             </div>
+            </StyledTable>
+            </div>
         </>
     )
 }
 
 export default BookList;
-
-
-
-
-
-
-
-
-
-
-
-
-// import React from "react";
-// import { useDispatch, useSelector } from "react-redux";
-// import { Link, useNavigate } from "react-router-dom";
-// // import BookmarkAddIcon from '@material-ui/icons-material/BookmarkAdd';
-// import { TableBody, TableCell, TableRow, Typography } from "@mui/material";
-
-// const BookList = ({history}) => {
-//     const dispatch = useDispatch();
-//     const { bookList } = useSelector((state) => state.data);
-//     // const navigate = useNavigate();
-
-//     // const deleteList = (id) => {
-//     //     dispatch(removeFromList(id));
-//     // };
-
-//     return (
-//         <>
-//             {bookList.length === 0 ? (
-//                 <div className = "list">
-//                     {/* <BookmarkAddIcon /> */}
-//                     <Typography>No Book List</Typography>
-//                     <Link to = "/view">View Available Books</Link>
-//                 </div>
-//             ) : (
-//                 <>
-//                 <div className = "cancel">
-//                     <div className = "header">
-//                         <p>Cancel</p>
-//                     </div>
-//                 <StyledTable>
-//                     <TableHead>
-//                     <THead>
-//                         <TableCell>Id</TableCell>
-//                         <TableCell>Book Name</TableCell>
-//                         <TableCell>Author</TableCell>
-//                         <TableCell>Category</TableCell>
-//                         <TableCell>Booking List</TableCell>
-//                     </THead>
-//                 </TableHead>
-//                     <TableBody>
-//                         {bookList &&
-//                             bookList.map((book) => (
-//                                 <TRow key = {book.id}>
-//                                     <TableCell>{book._id}</TableCell>
-//                                     <TableCell>{book.bookName}</TableCell>
-//                                     <TableCell>{book.author}</TableCell>
-//                                     <TableCell>{book.category}</TableCell>
-//                                     <TableCell>
-//                                      <Button color="primary" variant="contained" style={{marginRight:10}} component={Link} to={`/edit/${book._id}`}>View</Button> 
-//                                     </TableCell>
-//                                 </TRow>
-//                             ))
-//                         }
-//                     </TableBody>
-//                 </StyledTable>
-//                     </div>
-//                 </>
-//             )}
-//         </>
-//     );
-// }
-
-// export default BookList;

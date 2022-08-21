@@ -1,23 +1,26 @@
 .card-description {
     /* margin-top: 150px; */
-    width: 450px;
-    height: 500px;
+    width: 800px;
+    height: 600px;
     display: flex;
     flex-direction: column;
-    border: 1px blue solid;
     align-content: center;
-    background-color: whitesmoke;
+    border-radius: 10px;
+    margin-left: 100px;
+    margin-bottom: 400px;
+    justify-content: left;
+    
     /* margin: 0 auto; */
     /* background: url('https://media.istockphoto.com/photos/elearning-class-and-ebook-digital-technology-in-education-concept-pc-picture-id1004209050?k=20&m=1004209050&s=612x612&w=0&h=Pv95CEiD1UoeVbg-cMSxvcshbiGcudSalXCjMa6UL3I= center center/cover no-repeat'); */
 }
 
 .descriptionBook-container {
-    background: url('https://media.istockphoto.com/photos/elearning-class-and-ebook-digital-technology-in-education-concept-pc-picture-id1004209050?k=20&m=1004209050&s=612x612&w=0&h=Pv95CEiD1UoeVbg-cMSxvcshbiGcudSalXCjMa6UL3I=') center center/cover no-repeat;
+    background: url('https://cdn.99images.com/photos/wallpapers/hd-wallpapers/hd-wallpapers%20android-iphone-desktop-hd-backgrounds-wallpapers-1080p-4k-dxfbq.jpg') center center/cover no-repeat;
     height: 980px;
     width: 100%;
     display: flex;  
     /* flex-direction: column;   style={{marginTop: "150px"}}*/
-    justify-content: center;
+    /* justify-content: center; */
     align-items: center;
     object-fit: contain;
     /* display: flex;  */
@@ -31,19 +34,44 @@
     /* border: 10px solid black; */
     padding: 10px;
     display: flex;
-    background: url('https://media.istockphoto.com/photos/elearning-class-and-ebook-digital-technology-in-education-concept-pc-picture-id1004209050?k=20&m=1004209050&s=612x612&w=0&h=Pv95CEiD1UoeVbg-cMSxvcshbiGcudSalXCjMa6UL3I=') center center/cover no-repeat;
+    background: url('https://img.freepik.com/premium-photo/book-stack-library-room-blurred-bookshelf-background_42691-514.jpg?w=2000') center center/cover no-repeat;
     height: 980px;
     width: 100%;
+}
+
+.book-container {
+    right: 0%;
+    float: right;
+}
+
+.new-container .admin-button, .book-container .admin-button{
+    font-size: 20px;
+    padding:15px;
+    border-radius: 10px;
+}
+
+
+.book-container #add-book{
+    margin-left: 325px;
+    margin-top: 50px;
+}
+
+
+.book-container #all-book{
+    margin-left: -1000px;
+    margin-top: 50px;
 
 }
 
 
 /* Description */
 .card-header {  
-    height: 50px;
-    background: skyblue;
-    color: white;
+    height: 100px;
+    color:white;
+    font-size: 50px;
+    font-weight:bolder;
     text-align: center;
+    padding :10px;
 }
 
 /* Description heading*/
@@ -53,8 +81,9 @@
 
 /* Book name, author,.. */
 .description-container {
-    padding: 14px 16px 14px 16px;
-    margin: 10px;
+    /* padding: 14px 16px 14px 16px; */
+    color:white;
+    font-size: 20px;
 }
 
 .des-container {

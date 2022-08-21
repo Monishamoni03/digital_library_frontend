@@ -35,7 +35,7 @@ const AllBook = () => {
     const deleteBookData = async (id) => {
         await deleteBook(id);
         getAllBooks();   // if user added to my list, admin should not delete that user added book
-        alert("Successfully book deleted fromo the table");
+        alert("Successfully book has been deleted from the table");
     }
 
     const getAllBooks = async () => {
@@ -79,11 +79,11 @@ const AllBook = () => {
             <div className='book-container'>
 
                 <button onClick={() => navigate('/admin')}
-                    style={{ margin: "100px", height: "20%", width: "10%", color: "black", backgroundColor: "skyblue" }}
                     type='button'
-                    className='btn btn-primary'
+                    className="admin-button"
                     data-toggle='modal'
-                    data-target='#exampleModal' >
+                    data-target='#exampleModal' 
+                    id = 'all-book'>
                     Go Back
                 </button>
 
