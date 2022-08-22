@@ -29,12 +29,12 @@ function ValidateBook(bookName, author, category, description) {
     }
 
     if (description === "") {
-        error.descriptionError = "Please enter the category of book";
+        error.descriptionError = "Please enter the description of book";
     }
 
     console.log("ERROR in validation : ", error)
 
-    if (error.bookNameError || error.authorError || error.categoryError) {
+    if (error.bookNameError || error.authorError || error.categoryError || error.descriptionError) {
         return error;
     }
 
