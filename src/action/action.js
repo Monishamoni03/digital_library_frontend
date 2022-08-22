@@ -39,44 +39,29 @@ const bookListSuccess = (message) => ({
   payload: message
 });
 
-const addBookListFailure = (message) => ({
+const bookListFailure = (message) => ({
   type: types.ADD_BOOK_LIST_FAILURE,
   payload: message
 });
-
-// const addBookListSuccess = (message) => {
-//   return {
-//     type : 'ADD_BOOK_LIST_SUCCESS',
-//     payload : message
-//   }
-// }
-
-// const addBookListFailure = (message) => {
-//   return {
-//     type : 'ADD_BOOK_LIST_FAILURE',
-//     payload : message
-//   }
-// }
-
 
 //Register User
 export const registerUser = (user) => {
   console.log("register")
   return (dispatch) => {
-     axiosInstance.post(`/users/register`, user)
+    axiosInstance.post(`/users/register`, user)
       .then((res) => {
         console.log("res : ", res)
         dispatch(userAdded())
         dispatch(getSuccessMessage(res.data.data.message))
       })
       .catch((error) => {
-        console.log("error from action : ",error);
+        console.log("error from action : ", error);
         dispatch(getErrorMessage(error.response.data.error))
       })
   }
 }
 
-//Login user 
+//Login User 
 export const userLoggedIn = (loginCredential) => {
   console.log("Login : ", loginCredential);
   return async function (dispatch) {
@@ -96,11 +81,7 @@ export const userLoggedIn = (loginCredential) => {
   }
 }
 
-// export const addBook = async (book) => {
-//   return await axiosInstance.post(`${usersUrl}/add`, book);
-// }
-
-//add book - new [admin]
+//admin -> add book - new 
 export const addBook = (book) => {
   console.log("Book add : ", book);
   return async function (dispatch) {
@@ -108,6 +89,23 @@ export const addBook = (book) => {
       .then((res) => {
         if (res) {
           console.log("response book", res.data.data.message);
+          dispatch(getSuccessMessage(res.data.data.message))
+        }
+      })
+      .catch((error) => {
+        console.log(error.response.data.error);
+        dispatch(getErrorMessage(error.response.data.error))
+      })
+  }
+}
+
+//admin -> edit book - new 
+export const editBook = (id, book) => {
+  return async function (dispatch) {
+    axiosInstance.put(`${usersUrl}/${id}`, book)
+      .then((res) => {
+        if (res) {
+          console.log("response edit book", res.data.data.message);
           dispatch(getSuccessMessage(res.data.data.message))
         }
       })
@@ -200,6 +198,107 @@ export const loadUsers = () => {
   };
 }
 
+//books
+const usersUrl = 'http://localhost:5000/books';
+export const getBooks = async (id) => {
+  id = id || '';
+  return await axiosInstance.get(`${usersUrl}/${id}`);
+}
+
+
+// export const addBook = (book) => {
+//   console.log("Book add : ", book);
+//   return async function (dispatch) {
+//     axiosInstance.post('http://localhost:5000/books/add', book)
+//       .then((res) => {
+//         if (res) {
+//           console.log("response book", res.data.data.message);
+//           dispatch(getSuccessMessage(res.data.data.message))
+//         }
+//       })
+//       .catch((error) => {
+//         console.log(error.response.data.error);
+//         dispatch(getErrorMessage(error.response.data.error))
+//       })
+//   }
+// }
+//admin -> delete books
+export const deleteBook = (id) => {
+  return async function (dispatch) {
+    axiosInstance.delete(`${usersUrl}/${id}`)
+      .then((res) => {
+        if (res) {
+          console.log("delete book", message.bookData.message);
+          dispatch(bookListSuccess(message.bookData.message))
+        }
+      })
+      .catch((error) => {
+        // console.log(error.response.data.message);
+        dispatch(bookListFailure(error.response.data.message))
+      })
+  }
+}
+//old delete book
+// export const deleteBook = async (id) => {
+//   return await axiosInstance.delete(`${usersUrl}/${id}`);
+// }
+
+//single book
+export const getSingleBook = (id) => {
+  return function (dispatch) {
+    axiosInstance
+      .get(`${process.env.REACT_WEBPACK_APP_BASEURL}/${id}`)
+      .then((resp) => {
+        console.log("resp", resp);
+        dispatch(getUser(resp.data));
+      })
+      .catch(error => console.log(error))
+  };
+};
+
+//user- booking list
+export const getBookList = async (id) => {
+  return await axiosInstance.get(`http://localhost:5000/bookings/${id}`);
+}
+
+
+//add book to list-> user - book list
+export const addBookToList = (book) => {
+  return async (dispatch) => {
+    await axiosInstance.post(`http://localhost:5000/books/add-list`, book)
+      .then((message) => {
+        console.log("success : ", message.data.message)
+        dispatch(bookListSuccess(message.data.message))
+      })
+      .catch((err) => {
+        console.log("error : ", err.response.data.message)
+        dispatch(bookListFailure(err.response.data.message))
+      })
+  }
+}
+
+//remove from user - booking list
+export const removeBook = async (id) => {
+  return await axiosInstance.delete(`http://localhost:5000/bookings/${id}`);
+}
+
+
+//old add book
+
+// export const addBook = async (book) => {
+//   return await axiosInstance.post(`${usersUrl}/add`, book);
+// }
+
+
+//old edit book
+// export const editBooks = async (id, book) => {
+//   try {
+//     return await axiosInstance.put(`${usersUrl}/${id}`, book);
+//   } catch (error) {
+//     console.log('Error while editing books', error);
+//   }
+// }
+
 // export const addBook = (property) => {
 //   return function (dispatch) {
 //     axiosInstance
@@ -212,78 +311,3 @@ export const loadUsers = () => {
 //       })
 //   }
 // }
-
-//books
-const usersUrl = 'http://localhost:5000/books';
-export const getBooks = async (id) => {
-  id = id || '';
-  return await axiosInstance.get(`${usersUrl}/${id}`);
-}
-
-// //add book
-// export const addBook = async (book) => {
-//   return await axiosInstance.post(`${usersUrl}/add`, book);
-// }
-
-//edit books
-// export const editBook = async (id, book) => {
-//   return await axiosInstance.put(`${usersUrl}/${id}`, book)
-// }
-
-export const editBook = async (id, book) => {
-  try {
-    return await axiosInstance.put(`${usersUrl}/${id}`, book);
-  } catch (error) {
-    console.log('Error while editing books', error);
-  }
-}
-
-//delete books
-export const deleteBook = async (id) => {
-  return await axiosInstance.delete(`${usersUrl}/${id}`);
-}
-
-
-//single book
-export const getSingleBook = (id) => {
-  return function (dispatch) {
-      axiosInstance
-      .get(`${process.env.REACT_WEBPACK_APP_BASEURL}/${id}`)
-      .then((resp) => {
-          console.log("resp",resp);
-          dispatch(getUser(resp.data));
-      })
-      .catch(error => console.log(error))
-  };
-};
-
-// export const loadBookDetails = async(id) => {
-//   const res = await getBooks(id);
-//   setBook(res.data);
-// }
-
-//user- booking list
-export const getBookList = async (id) => {
-  return await axios.get(`http://localhost:5000/bookings/${id}`);
-}
-
-
-//add book to list-> user- book list
-export const addBookToList = (book) => {
-  return async(dispatch) => {
-    await axios.post(`http://localhost:5000/books/add-list`,book)
-    .then((message) => {
-      console.log("success : ",message.data.message)
-      dispatch(bookListSuccess(message.data.message))
-    })
-    .catch((err) => {
-      console.log("error : ",err.response.data.message)
-      dispatch(addBookListFailure(err.response.data.message))
-    })
-  }
-}
-
-//remove from user- book list
-export const removeBook = async (id) => {
-  return await axiosInstance.delete(`http://localhost:5000/bookings/${id}`);
-}

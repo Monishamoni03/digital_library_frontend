@@ -29,12 +29,12 @@ function Router() {
                     <Route exact path = "/register" element = {<Register />} />
                     <Route exact path = "/admin" element = {<Header />} />              {/* ADMIN */}
                     <Route exact path = "/admin/add" element = {<AddBook />} />           {/* ADMIN */}
-                    <Route exact path = "/editbooks" element = {<EditInfo />} />          {/* ADMIN */}
+                    <Route exact path = "/edit/:id" element = {<EditBook />} />       {/*ADMIN*/}
                     <Route exact path = "/admin/book" element = {<AllBook />} />      {/* ADMIN */}
+                    <Route exact path = "/description/:id" element = {<BookDescription />} />       {/*ADMIN*/}
+                    <Route exact path = "/profile" element = {<EditInfo />} />          {/* ADMIN */}
                     <Route exact path = "/user" element = {<ViewBook />} />               {/* USER */}
                     <Route exact path = "/book-list" element = {<BookList />} />            {/* USER */}
-                    <Route exact path = "/edit/:id" element = {<EditBook />} />       {/*ADMIN*/}
-                    <Route exact path = "/description/:id" element = {<BookDescription />} />       {/*ADMIN*/}
                     <Route exact path = "/view/:id" element = {<ViewDescription />} />               {/* USER */}
                 </Routes>               
             </div>

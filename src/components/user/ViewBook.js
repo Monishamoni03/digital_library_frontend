@@ -31,7 +31,7 @@ const ViewBook = () => {
     const [books, setBooks] = useState([]);
     const navigate = useNavigate();
 
-    const { bookListSuccess } = useSelector(state => state.bookData);
+    const { bookListSuccess } = useSelector(state => state.bookData);  //bookData-> reducer, root-reducer file
     const { bookListFailure } = useSelector(state => state.bookData);
     const dispatch = useDispatch();
 
@@ -57,7 +57,7 @@ const ViewBook = () => {
     const addBook = (bookId) => {
         const token = jwtdecode(window.localStorage.getItem('token')).id
         dispatch(addBookToList({
-            user : token,
+            user : token, 
             book : bookId
         }));
         // alert('Book is added to your list');

@@ -63,8 +63,9 @@ class Register extends Component {
         const user = this.state;
         if (user) {
             this.props.registerUser(user);
+           
             // this.props.history.push("/user");
-            // <Navigate to="/user" />
+            
         }
     };
 

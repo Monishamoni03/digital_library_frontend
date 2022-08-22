@@ -17,6 +17,8 @@ const AdminNavBar = () => {
   useEffect(() => {
     if (location.pathname === '/') {
       setActiveTab('Logout');
+    } else if (location.pathname === '/profile') {
+      setActiveTab('Profile');
     }
   }, [location]);
 
@@ -34,9 +36,9 @@ const AdminNavBar = () => {
       <p className='logo'>Library Management System</p>
 
       <div className='header-right'>
-        {/* <Link to='/addbooks'>
+        <Link to='/profile'>
           <p className={`${activeTab === 'ProfileInfo' ? 'active' : ''}`} onClick={() => setActiveTab('Admin')}>Profile</p>
-        </Link> */}
+        </Link>
 
         <Link to='/'>
           <p className={`${activeTab === 'Logout' ? 'active' : ''}`} onClick={handleLogout}>Logout</p>

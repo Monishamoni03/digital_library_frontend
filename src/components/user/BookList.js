@@ -16,7 +16,7 @@ const THead = styled(TableRow)`
     & > th {
         font-size: 20px;
         background: black;
-        color: pink;
+        color: white;
     }
 `;
 
@@ -49,12 +49,13 @@ const BookList = () => {
 
     return (
         <>
+            {/* <UserNavBar /> */}
+            <div style={{ background: `url('https://i.pinimg.com/originals/73/66/0d/73660d35a956a520d400d2ca465eb02c.jpg') center center/cover no-repeat`, height: "980px"}}>
             <UserNavBar />
-            <div style={{ background: `url('https://i.pinimg.com/originals/73/66/0d/73660d35a956a520d400d2ca465eb02c.jpg') center center/cover no-repeat`, height: "780px"}}>
             <StyledTable>
                 <TableHead>
                 {/* <div className = "about"> */}
-                <TableCell className = "aboutHead" style={{color: "violet", fontSize: "50px", textAlign: "center"}}>My List</TableCell>
+                {/* <TableCell style={{color: "violet", fontSize: "50px", textAlign: "center"}}>My List</TableCell> */}
                 {/* </div> */}
                 <br /><br />
                     <THead>
@@ -78,9 +79,9 @@ const BookList = () => {
                 </TableBody>
                 <div className='book-container'>
                 <button onClick={() => navigate('/user')}
-                    style={{ margin: "50px", height: "80%", width: "100%", color: "white", backgroundColor: "violet" }}
+                    style={{ margin: "50px", height: "80%", width: "100%", color: "white", backgroundColor: "black" }}
                     type='button'
-                    className='btn btn-primary'
+                    className='admin-button'
                     data-toggle='modal'
                     data-target='#exampleModal' >
                     Go Back

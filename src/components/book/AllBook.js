@@ -3,8 +3,10 @@
 import React, { useState, useEffect } from "react";
 import { Table, TableBody, TableCell, Paper, TableHead, TableRow, Button, styled } from "@mui/material";
 import { getBooks, deleteBook } from '../../action/action';
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import AdminNavBar from "../admin/AdminNavBar";
+import { useDispatch, useSelector } from "react-redux";
+// import { useParams } from "react-router";
 
 const StyledTable = styled(Table)`
     width: 90%;
@@ -27,16 +29,36 @@ const TRow = styled(TableRow)`
 
 const AllBook = () => {
     const [books, setBooks] = useState([]);
+    const dispatch = useDispatch();
+    // const { id } = useParams();
+    const { bookListSuccess } = useSelector(state => state.bookData);  //bookData-> reducer, root-reducer file
+    const { bookListFailure } = useSelector(state => state.bookData);
+
+    useEffect(() => {
+        if (bookListSuccess) {
+          console.log('added book');
+          alert(bookListSuccess)
+          // dispatch(setBookIn())
+      } else if (bookListFailure) {
+        alert(bookListFailure)
+      }
+    }, [bookListSuccess, bookListFailure])
 
     useEffect(() => {
         getAllBooks();
     }, []);
 
-    const deleteBookData = async (id) => {
-        await deleteBook(id);
+    const deleteBookData = (id) => {
+        dispatch(deleteBook(id));
         getAllBooks();   // if user added to my list, admin should not delete that user added book
         alert("Successfully book has been deleted from the table");
+    
     }
+    // const deleteBookData = async (id) => {
+    //     await deleteBook(id);
+    //     getAllBooks();   // if user added to my list, admin should not delete that user added book
+    //     alert("Successfully book has been deleted from the table");
+    // }
 
     const getAllBooks = async () => {
         let res = await getBooks();

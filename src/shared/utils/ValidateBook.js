@@ -12,7 +12,7 @@ function ValidateBook(bookName, author, category, description) {
 
     if (bookName === "") {
         error.bookNameError = "Please enter the book name";
-    } else if (!regex.NAME_REGEX.test(bookName)) {
+    } else if (!regex.BOOKNAME_REGEX.test(bookName)) {
         error.bookNameError = "Invalid book name";
     }
 
